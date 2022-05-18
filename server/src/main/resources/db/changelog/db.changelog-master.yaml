@@ -4,7 +4,7 @@ databaseChangeLog:
       author: dkniep
       changes:
         - createTable:
-            tableName: test
+            tableName: share
             columns:
               - column:
                   name: id
@@ -14,7 +14,21 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: name
+                  name: secret
                   type: nvarchar(255)
                   constraints:
                     nullable: false
+              - column:
+                  name: type
+                  type: nvarchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: shared_object
+                  type: clob
+                  constraints:
+                    nullable: true
+        - addUniqueConstraint:
+            tableName: share
+            columnNames: secret
+            constraintName: uk_share-secret
