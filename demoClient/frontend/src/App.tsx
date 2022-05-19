@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { request } from './http';
 import QrReader from 'react-qr-reader';
-import { Box, Grid, TextField } from '@mui/material';
-import { padding } from '@mui/system';
+import { Grid, TextField } from '@mui/material';
 
 interface RedirectShare {
   secret: string
@@ -32,10 +31,6 @@ function App() {
       body: JSON.stringify(redirectShare)
     }); 
   }
-
-  useEffect(() => {
-   
-  }, []);
 
   return (
   <div className="App">

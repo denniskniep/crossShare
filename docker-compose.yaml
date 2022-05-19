@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  cross-share-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks: ['crossShare-net']
+
+  cross-share-demo-client:
+    build:
+      context: ./demoClient
+      dockerfile: Dockerfile
+    ports:
+      - 8181:8181
+    environment:
+      CROSSSHARE_SERVER_URL: "http://cross-share-server:8080"
+    networks: ['crossShare-net']
+
+networks: {crossShare-net: {}}

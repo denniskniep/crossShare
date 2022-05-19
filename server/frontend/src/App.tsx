@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { QRCodeSVG } from 'qrcode.react';
 import { request } from './http';
 import { useInterval } from './interval';
-import { useNavigate } from "react-router-dom";
 
 interface Share {
   secret: string
@@ -17,7 +16,6 @@ interface RedirectShareObject {
 
 function App() {
   const [share, setShare] = useState<Share|null>(null);
-  const navigate = useNavigate();
 
   const createShare = async () => {
       const result = await request<Share>('/api/share/create', { method: 'POST'});
@@ -52,7 +50,7 @@ function App() {
     if(!share){
       createShare();
     }
-  }, []);
+  }, [share]);
 
   useInterval(async () => {
     if(share && !share.sharedObject){      
