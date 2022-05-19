@@ -41,7 +41,8 @@ function App() {
           var redirectSharedObject : RedirectShareObject = JSON.parse(share.sharedObject);
           if(redirectSharedObject && redirectSharedObject.url){
             console.log("navigate to", redirectSharedObject.url)    
-            navigate(redirectSharedObject.url);
+            //window.location.href = redirectSharedObject.url;
+            window.location.replace(redirectSharedObject.url);
           }
       }
     }
@@ -65,9 +66,9 @@ function App() {
   }, 1000);
 
   return (
-    <div className="App">
+    <div className="App"> 
       <h1>Scan me:</h1>
-      <QRCodeSVG size={350} value={JSON.stringify(share)} />
+      <QRCodeSVG size={350} value={JSON.stringify({secret: share?.secret})} />
     </div>
   );
 }
